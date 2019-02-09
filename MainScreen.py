@@ -32,10 +32,3 @@ else:
     now = time.time()
     end = round((now - start), 2)
     print("\033[1;31m\nThat's incorrect\033[0m" + " You took ", end , " seconds!")
-
-
-
-
-
-
-
