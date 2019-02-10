@@ -36,14 +36,14 @@ photoImg = ImageTk.PhotoImage(img)
 Logo = Label(root, image= photoImg, borderwidth= 0, )
 Logo.pack()
 
-SentenceToType = Label(root, text= sentence, fg='blue', bg=GREY)
+SentenceToType = Label(root, text= sentence, fg='blue', bg=GREY, width= 900)
 SentenceToType.pack(pady= 10)
 
 Explain = Label(root, text= "Type the above sentence below.",bg= GREY, fg = 'black', font='Ariel')
 Explain.pack(pady =25)
 
 word = StringVar()
-Entry1 = Entry(root, fg='black', bd= 5, width= 60, textvariable= word)
+Entry1 = Entry(root, fg='black',bd= 2, width= 60, textvariable= word, relief=GROOVE, takefocus= TRUE)
 Entry1.pack()
 
 
@@ -65,9 +65,8 @@ def SentenceChecker():
         Time2.pack()
 
 
-EnterButton = Button(root, text="Finished", width=10, relief=GROOVE, command=SentenceChecker)
+EnterButton = Button(root, text="Finished", width=10, relief=RAISED, command=SentenceChecker)
 EnterButton.pack(pady= 10)
 
-Entry1.focus()
 # root.bind('<Enter>', SentenceChecker())
 root.mainloop()
