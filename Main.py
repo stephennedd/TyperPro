@@ -1,5 +1,12 @@
 import random
 import time
+from tkinter import *
+from tkinter import ttk
+from PIL import ImageTk, Image
+
+root = Tk()
+
+GREY = "#81827D"
 
 # Open file article.txt and seperate the sentences using ('.') as split.
 # Then write a randomly chosen sentence into sentence.txt.
@@ -10,25 +17,57 @@ for i in range(1000):
         f.write(random.choice(sentences) + ".")
 # Read the sentence that was written into sentences.txt and print it.
 with open("sentence.txt", 'r') as q:
-    sentence = q.read().strip()
-    print(sentence)
+    sentence = str(q.read().strip())
 
 # Create a time stamp of the time it printed the sentence.
 start = time.time()
 
-# Ask for user to input (retype) the sentence.
-typedword = input("\033[1;34mPlease retype the above sentence: \033[0m")
+root.title("TyperPro")
+root.geometry("1000x500")
+root.config(bg= GREY)
+root.iconbitmap(bitmap="icon.ico")
 
-# If user types sentence correctly..
-# Take another timestamp of the time the print happened.
-# Subtract the current time from the start time)
-if typedword == sentence:
-    now = time.time()
-    end = round((now - start), 2)
-    print("\033[1;32m\nThat's correct! \033[0m" + " You took " ,end,  " seconds!")
+mainframe = ttk.Frame(root, padding="3 3 12 12")
+mainframe.pack()
 
-# If user types sentence wrongly..
-else:
-    now = time.time()
-    end = round((now - start), 2)
-    print("\033[1;31m\nThat's incorrect\033[0m" + " You took ", end , " seconds!")
+img = Image.open("typerlogo.png")
+img = img.resize((350,225), Image.ANTIALIAS)
+photoImg = ImageTk.PhotoImage(img)
+Logo = Label(root, image= photoImg, borderwidth= 0, )
+Logo.pack()
+
+SentenceToType = Label(root, text= sentence, fg='blue', bg=GREY)
+SentenceToType.pack(pady= 10)
+
+Explain = Label(root, text= "Type the above sentence below.",bg= GREY, fg = 'black', font='Ariel')
+Explain.pack(pady =25)
+
+word = StringVar()
+Entry1 = Entry(root, fg='black', bd= 5, width= 60, textvariable= word)
+Entry1.pack()
+
+
+def SentenceChecker():
+    Right = Label(root, text= "Great!", fg= 'green', bg = GREY)
+    Wrong = Label(root, text= "You made a mistake.", fg= 'red', bg = GREY)
+    content = word.get()
+    if content == sentence:
+        now = time.time()
+        end = round((now - start), 2)
+        Time = Label(root, text= str(end) + " seconds", bg= GREY)
+        Right.pack()
+        Time.pack()
+    else:
+        now = time.time()
+        end = round((now - start), 2)
+        Time2 = Label(root, text=str(end) + " seconds", bg=GREY)
+        Wrong.pack()
+        Time2.pack()
+
+
+EnterButton = Button(root, text="Finished", width=10, relief=GROOVE, command=SentenceChecker)
+EnterButton.pack(pady= 10)
+
+Entry1.focus()
+# root.bind('<Enter>', SentenceChecker())
+root.mainloop()
