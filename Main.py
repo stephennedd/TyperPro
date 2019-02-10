@@ -11,12 +11,12 @@ GREY = "#81827D"
 # Open file article.txt and seperate the sentences using ('.') as split.
 # Then write a randomly chosen sentence into sentence.txt.
 for i in range(1000):
-    with open("article.txt", 'r') as f:
+    with open("files/article.txt", 'r') as f:
         sentences = f.read().split(".")
-    with open("sentence.txt", 'w') as f:
+    with open("files/sentence.txt", 'w') as f:
         f.write(random.choice(sentences) + ".")
 # Read the sentence that was written into sentences.txt and print it.
-with open("sentence.txt", 'r') as q:
+with open("files/sentence.txt", 'r') as q:
     sentence = str(q.read().strip())
 
 # Create a time stamp of the time it printed the sentence.
@@ -25,12 +25,12 @@ start = time.time()
 root.title("TyperPro")
 root.geometry("1000x500")
 root.config(bg= GREY)
-root.iconbitmap(bitmap="icon.ico")
+root.iconbitmap(bitmap="images/icon.ico")
 
 mainframe = ttk.Frame(root, padding="3 3 12 12")
 mainframe.pack()
 
-img = Image.open("typerlogo.png")
+img = Image.open("images/typerlogo.png")
 img = img.resize((350,225), Image.ANTIALIAS)
 photoImg = ImageTk.PhotoImage(img)
 Logo = Label(root, image= photoImg, borderwidth= 0, )
@@ -68,5 +68,5 @@ def SentenceChecker():
 EnterButton = Button(root, text="Finished", width=10, relief=RAISED, command=SentenceChecker)
 EnterButton.pack(pady= 10)
 
-# root.bind('<Enter>', SentenceChecker())
+# root.bind('<Return>', SentenceChecker())
 root.mainloop()
