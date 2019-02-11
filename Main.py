@@ -7,7 +7,7 @@ from PIL import ImageTk, Image
 root = Tk()
 
 GREY = "#81827D"
-
+FONT = ('Ariel', 10, 'bold')
 # Open file article.txt and seperate the sentences using ('.') as split.
 # Then write a randomly chosen sentence into sentence.txt.
 for i in range(1):
@@ -38,14 +38,14 @@ Logo = Label(root, image= photoImg, borderwidth= 0, )
 Logo.pack()
 
 # The sentence that was written into sentence.txt
-SentenceToType = Label(root, text= sentence, fg='blue', bg=GREY, width= 900)
+SentenceToType = Label(root, text= sentence, fg='blue', bg=GREY, width= 900, font=FONT)
 SentenceToType.pack(pady= 10)
 
-Explain = Label(root, text= "Type the above sentence below.",bg= GREY, fg = 'black', font='Ariel')
+Explain = Label(root, text= "Type the above sentence below.",bg= GREY, fg = 'black', font=FONT)
 Explain.pack(pady =25)
 
 word = StringVar()
-Entry1 = Entry(root, fg='black',bd= 2, width= 60, textvariable= word, relief=GROOVE, takefocus= TRUE)
+Entry1 = Entry(root, fg='black',bd= 2, width= 60, font='Ariel', textvariable= word, relief=GROOVE, takefocus= TRUE)
 Entry1.pack()
 
 # Check's if the entered sentence is the same as the given sentence.
